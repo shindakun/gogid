@@ -1,0 +1,8 @@
+- [x] Complete task from command line
+- [ ] Create .gogid in home dir of does not exist
+- [ ] Create tasks.json if does not exist
+- [ ] Add note to task from command line
+- [ ] Way better error handling
+- [ ] Diff based backup of task list
+- [ ] Pretty up the output
+- [ ] Think about adding method to delete notes from tasks
