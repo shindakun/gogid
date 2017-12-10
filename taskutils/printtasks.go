@@ -84,6 +84,6 @@ func PrintTask(taskList *model.TaskList, task int64) {
 		}
 		fmt.Printf("\n\n")
 	} else {
-		fmt.Printf("Task #%d does not exist.", task)
+		fmt.Printf("Task # %d does not exist.\n", task)
 	}
 }

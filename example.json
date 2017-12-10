@@ -1,7 +1,7 @@
 {
     "Task": [
         {
-            "guid": "c14dd3bb-f13c-4f3d-9783-d8f78a02c687",
+            "uuid": "c14dd3bb-f13c-4f3d-9783-d8f78a02c687",
             "id": 0,
             "task": "Testing creation of a new entry in a blank file.",
             "created": 1512874138,
