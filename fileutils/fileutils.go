@@ -22,16 +22,16 @@ func DataDirCheck() string {
 
 	// directory does not exist we should create it.
 	if err != nil {
-		err = os.Mkdir(path, 0644)
+		err = os.Mkdir(path, 0755)
 		if err != nil {
 			panic(err)
 		}
 	}
 
 	tasksFile := filepath.Join(path, "tasks.json")
-	_, err = os.OpenFile(tasksFile, os.O_RDONLY|os.O_CREATE, 0666)
+	_, err = os.OpenFile(tasksFile, os.O_RDONLY|os.O_CREATE, 0644)
 	if err != nil {
-		panic(nil)
+		panic(err)
 	}
 	return tasksFile
 }
