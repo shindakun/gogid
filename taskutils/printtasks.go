@@ -5,6 +5,7 @@ import (
 	"gogid/model"
 	"os"
 	"text/template"
+	"time"
 
 	"github.com/fatih/color"
 )
@@ -23,14 +24,16 @@ var (
 	italicblue    = color.New(color.FgBlue, color.Italic).SprintFunc()
 )
 
+// funcMap contains a map of functions to apply to the template output.
 var funcMap = template.FuncMap{
 	"id":         red,
 	"task":       boldcyan,
 	"complete":   italicblue,
 	"nextaction": boldyellow,
+	"time":       time.Unix,
 }
 
-const outputTemplate = `{{id .ID }} {{task .Task}} {{.Created}}  {{.Updated}}  {{complete .Complete}}  {{nextaction .NextAction}} {{.Notes}}`
+const outputTemplate = `{{id .ID }} | {{task .Task}} | {{time .Created 0}} | {{time .Updated 0 }} | {{.Complete}} | {{nextaction .NextAction}} | {{.Notes}}`
 
 // TODO: Should probably combine these all together and use switch from output type.
 
@@ -69,8 +72,8 @@ func BoolPrintTasks(taskList *model.TaskList, complete bool) {
 }
 
 // PrintTask prints out the specificed task.
-func PrintTask(taskList *model.TaskList, task int32) {
-	if int32(len(taskList.Task)) > task && int32(len(taskList.Task)) >= 0 {
+func PrintTask(taskList *model.TaskList, task int64) {
+	if int64(len(taskList.Task)) > task && int64(len(taskList.Task)) >= 0 {
 		tmpl, err := template.New("task").Funcs(funcMap).Parse(outputTemplate)
 		if err != nil {
 			panic(err)

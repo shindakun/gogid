@@ -1,5 +1,5 @@
 - [x] Complete task from command line
-- [ ] Do away with all those int32 casts
+- [x] Do away with all those int32 casts
 - [x] Create .gogid in home dir of does not exist
 - [x] Create tasks.json if does not exist
 - [x] Add note to task from command line
@@ -15,3 +15,4 @@
 - [ ] Online to keep multiple systems in sync
 - [ ] Sync conflict resolution?
 - [ ] Should probably not start counting at 0
+- [ ] Add method to process tasks that haven't been updated in x number of days
