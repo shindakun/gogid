@@ -11,18 +11,29 @@ import (
 )
 
 // DataDirCheck checks to see if .gogid exsits in the users home directory.
-func DataDirCheck() {
+// It will create the directory and a blank tasks.json file if needed.
+func DataDirCheck() string {
 	home := os.Getenv("HOME")
 	if home == "" {
 		panic("can not get home dir")
 	}
 	path := filepath.Join(home, ".gogid")
-	fmt.Println(path)
-	stat, err := os.Stat(path)
+	_, err := os.Stat(path)
+
+	// directory does not exist we should create it.
 	if err != nil {
-		panic(err)
+		err = os.Mkdir(path, 0644)
+		if err != nil {
+			panic(err)
+		}
 	}
-	fmt.Println(stat)
+
+	tasksFile := filepath.Join(path, "tasks.json")
+	_, err = os.OpenFile(tasksFile, os.O_RDONLY|os.O_CREATE, 0666)
+	if err != nil {
+		panic(nil)
+	}
+	return tasksFile
 }
 
 // LoadTasks reads the entire tasks JSON file and
@@ -38,7 +49,7 @@ func LoadTasks(path string) model.TaskList {
 	return taskList
 }
 
-// WriteTasks writes JSON back to disk
+// WriteTasks writes JSON back to disk.
 func WriteTasks(path string, taskList *model.TaskList) {
 	tList, err := json.Marshal(taskList)
 	if err != nil {

@@ -14,6 +14,7 @@ func AddNewTask(taskList *model.TaskList, task string) {
 	newTask.Created = int32(time.Now().Unix())
 	newTask.Updated = int32(time.Now().Unix())
 	newTask.Complete = false
+	newTask.NextAction = ""
 	newTask.Notes = make([]string, 0)
 	taskList.Task = append(taskList.Task, newTask)
 }
@@ -21,6 +22,13 @@ func AddNewTask(taskList *model.TaskList, task string) {
 // AddNewNote adds a new note to a task.
 func AddNewNote(taskList *model.TaskList, task int32, note string) {
 	taskList.Task[task].Notes = append(taskList.Task[task].Notes, note)
+	taskList.Task[task].Updated = int32(time.Now().Unix())
+}
+
+// AddNextAction adds next action to task, no history, only one next action.
+func AddNextAction(taskList *model.TaskList, task int32, nextAction string) {
+	taskList.Task[task].NextAction = nextAction
+	taskList.Task[task].Updated = int32(time.Now().Unix())
 }
 
 // TODO: Combine these, or leave as on always sets true and one always sets

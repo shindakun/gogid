@@ -1,8 +1,17 @@
 - [x] Complete task from command line
-- [ ] Create .gogid in home dir of does not exist
-- [ ] Create tasks.json if does not exist
-- [ ] Add note to task from command line
+- [ ] Do away with all those int32 casts
+- [x] Create .gogid in home dir of does not exist
+- [x] Create tasks.json if does not exist
+- [x] Add note to task from command line
+- [x] Handle cases where single task is greater then task count
+- [x] Actually use ~/.gogid/tasks.json
+- [x] Add method for printing completed or uncompleted tasks
+- [ ] Add configuration file to override defaults
 - [ ] Way better error handling
 - [ ] Diff based backup of task list
-- [ ] Pretty up the output
+- [ ] Finish prettying up the output
+- [x] Add no color output mode
 - [ ] Think about adding method to delete notes from tasks
+- [ ] Online to keep multiple systems in sync
+- [ ] Sync conflict resolution?
+- [ ] Should probably not start counting at 0

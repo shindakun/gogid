@@ -2,13 +2,12 @@
     "Task": [
         {
             "id": 0,
-            "task": "Start work on gogid",
-            "created": 1512798214,
-            "updated": 1512798214,
+            "task": "Testing creation of a new entry in a blank file.",
+            "created": 1512874138,
+            "updated": 1512874158,
             "complete": true,
-            "notes": [
-                "Notes are an array of strings."
-            ]
+            "nextaction": "Waiting on email from xyz",
+            "notes": []
         }
     ]
 }
