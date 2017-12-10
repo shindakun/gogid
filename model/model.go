@@ -7,6 +7,7 @@ type TaskList struct {
 
 // Task is a struct that corrisponds to a single task.
 type Task struct {
+	UUID       string   `json:"uuid"`
 	ID         int64    `json:"id"`
 	Task       string   `json:"task"`
 	Created    int64    `json:"created"`

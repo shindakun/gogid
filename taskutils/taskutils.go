@@ -3,13 +3,20 @@ package taskutils
 import (
 	"time"
 
+	"github.com/nu7hatch/gouuid"
+
 	"gogid/model"
 )
 
 // AddNewTask adds a new uncompleted task to the task list.
 func AddNewTask(taskList *model.TaskList, task string) {
+	u, err := uuid.NewV4()
+	if err != nil {
+		panic(err)
+	}
 	var newTask model.Task
 	newTask.ID = int64(len(taskList.Task))
+	newTask.UUID = u.String()
 	newTask.Task = task
 	newTask.Created = int64(time.Now().Unix())
 	newTask.Updated = int64(time.Now().Unix())
