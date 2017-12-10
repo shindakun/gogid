@@ -33,7 +33,7 @@ var funcMap = template.FuncMap{
 	"time":       time.Unix,
 }
 
-const outputTemplate = `{{id .ID }} | {{task .Task}} | {{time .Created 0}} | {{time .Updated 0 }} | {{.Complete}} | {{nextaction .NextAction}} | {{.Notes}}`
+const outputTemplate = `{{id .ID }} | {{task .Task}} | {{time .Created 0}} | {{time .Updated 0 }} | {{complete .Complete}} | {{nextaction .NextAction}} | {{.Notes}}`
 
 // TODO: Should probably combine these all together and use switch from output type.
 
