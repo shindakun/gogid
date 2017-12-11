@@ -11,11 +11,11 @@ import (
 
 // main command line interface for gogid.
 func main() {
-
 	// Should return path for tasks.json.
 	tasksFile := fileutils.DataDirCheck()
 
 	// TODO: Maybe move flags up to thier own function?
+	syncPtr := flag.Bool("sync", false, "Print entire task list to console.")
 	printAllPtr := flag.Bool("printtasks", false, "Print entire task list to console.")
 	printDonePtr := flag.Bool("printdone", false, "Print completed tasks to console.")
 	printNotDonePtr := flag.Bool("printnotdone", false, "Print completed tasks to console.")
@@ -49,6 +49,11 @@ func main() {
 
 	// TODO: Error handling?
 	switch os.Args[1] {
+	case "-sync":
+		if *syncPtr {
+			taskList := fileutils.LoadTasks(tasksFile)
+			taskutils.SyncTasks(&taskList)
+		}
 	case "-printtasks":
 		if *printAllPtr {
 			taskList := fileutils.LoadTasks(tasksFile)

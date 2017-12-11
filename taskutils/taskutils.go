@@ -1,12 +1,26 @@
 package taskutils
 
 import (
+	"bytes"
+	"encoding/json"
+	"fmt"
 	"time"
 
 	"github.com/nu7hatch/gouuid"
 
+	"gogid/httputils"
 	"gogid/model"
 )
+
+// SyncTasks attempts to sync with remote web server.
+func SyncTasks(taskList *model.TaskList) {
+	for c := 0; c < len(taskList.Task); c++ {
+		fmt.Printf(taskList.Task[c].UUID)
+		fmt.Println("  " + string(httputils.HTTPRequest("GET", "http://localhost:3000/getbyuuid/"+taskList.Task[c].UUID, "", nil)))
+		task, _ := json.Marshal(taskList.Task[c])
+		fmt.Println("  " + string(httputils.HTTPRequest("POST", "http://localhost:3000/addtask/", "", bytes.NewReader(task))))
+	}
+}
 
 // AddNewTask adds a new uncompleted task to the task list.
 func AddNewTask(taskList *model.TaskList, task string) {
