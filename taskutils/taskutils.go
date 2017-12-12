@@ -12,14 +12,41 @@ import (
 	"gogid/model"
 )
 
+type TaskListToSend struct {
+	IdUpdated []IdUpdated `json:"tasks"`
+}
+
+// Task is a struct that corrisponds to a single task.
+type IdUpdated struct {
+	UUID    string `json:"uuid"`
+	Updated int64  `json:"updated"`
+}
+
 // SyncTasks attempts to sync with remote web server.
 func SyncTasks(taskList *model.TaskList) {
+
+	var tList TaskListToSend
+
+	// Build our list of tasks and update timestampes.
 	for c := 0; c < len(taskList.Task); c++ {
-		fmt.Printf(taskList.Task[c].UUID)
-		fmt.Println("  " + string(httputils.HTTPRequest("GET", "http://localhost:3000/getbyuuid/"+taskList.Task[c].UUID, "", nil)))
-		task, _ := json.Marshal(taskList.Task[c])
-		fmt.Println("  " + string(httputils.HTTPRequest("POST", "http://localhost:3000/addtask/", "", bytes.NewReader(task))))
+		var toSend IdUpdated
+		toSend.UUID = taskList.Task[c].UUID
+		toSend.Updated = taskList.Task[c].Updated
+		tList.IdUpdated = append(tList.IdUpdated, toSend)
+		// fmt.Printf("%s  %d", taskList.Task[c].UUID, taskList.Task[c].Updated)
+		// fmt.Println("  " + string(httputils.HTTPRequest("GET", "http://localhost:3000/getbyuuid/"+taskList.Task[c].UUID, "", nil)))
+		// task, _ := json.Marshal(taskList.Task[c])
+		// fmt.Println("  " + string(httputils.HTTPRequest("POST", "http://localhost:3000/addtask/", "", bytes.NewReader(task))))
+
 	}
+	tasks, _ := json.Marshal(tList)
+
+	// Send list of tasks to remote, recieve list of UUID's we need to send complete data for.
+	resp := string(httputils.HTTPRequest("POST", "http://localhost:3000/addtask/", "", bytes.NewReader(tasks)))
+
+	fmt.Println("  " + resp)
+
+	//
 }
 
 // AddNewTask adds a new uncompleted task to the task list.
