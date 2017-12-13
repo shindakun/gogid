@@ -1,3 +1,5 @@
+- [ ] Add tests!
+- [ ] Add CI.
 - [x] Complete task from command line
 - [x] Do away with all those int32 casts
 - [x] Create .gogid in home dir of does not exist
@@ -16,3 +18,5 @@
 - [ ] Sync conflict resolution?
 - [ ] Should probably not start counting at 0
 - [ ] Add method to process tasks that haven't been updated in x number of days
+- [ ] Move sync stuff to it's own branch for continuing development
+- [ ] 
