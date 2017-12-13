@@ -18,7 +18,7 @@ func main() {
 	syncPtr := flag.Bool("sync", false, "Print entire task list to console.")
 	printAllPtr := flag.Bool("printtasks", false, "Print entire task list to console.")
 	printDonePtr := flag.Bool("printdone", false, "Print completed tasks to console.")
-	printNotDonePtr := flag.Bool("printnotdone", false, "Print completed tasks to console.")
+	printNotDonePtr := flag.Bool("printnotdone", false, "Print incomplete tasks to console.")
 	printTaskPtr := flag.Int64("print", -1, "Print a single task.")
 	completeTaskPtr := flag.Int64("complete", -1, "Mark a single task as completed.")
 	notCompleteTaskPtr := flag.Int64("notcomplete", -1, "Mark a single task as not completed.")

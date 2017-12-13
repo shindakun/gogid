@@ -2,7 +2,7 @@ package model
 
 // TaskList is a struct with an array of Task structs.
 type TaskList struct {
-	Task []Task `json:"Task"`
+	Task []Task `json:"task"`
 }
 
 // Task is a struct that corrisponds to a single task.
