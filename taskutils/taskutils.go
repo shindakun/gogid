@@ -86,8 +86,16 @@ func CompleteTask(taskList *model.TaskList, task int64) {
 
 // InvertCompleteTask flips bool to oposite and updates update timestamp.
 func InvertCompleteTask(taskList *model.TaskList, task int64) {
-	if int64(len(taskList.Task)) > task && int64(len(taskList.Task)) >= 0 {
+	if taskList.Task[task].Complete == true {
+		// task already completed.
+	}
+	if task <= GetNumberOfTasks(taskList) && task >= 0 {
 		taskList.Task[task].Complete = !taskList.Task[task].Complete
 		taskList.Task[task].Updated = int64(time.Now().Unix())
 	}
+}
+
+// GetNumberOfTasks returns the length
+func GetNumberOfTasks(taskList *model.TaskList) int64 {
+	return int64(len(taskList.Task) - 1)
 }

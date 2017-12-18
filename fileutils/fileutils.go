@@ -45,7 +45,10 @@ func LoadTasks(path string) model.TaskList {
 	}
 
 	var taskList model.TaskList
-	json.Unmarshal(file, &taskList)
+	err = json.Unmarshal(file, &taskList)
+	if err != nil {
+		panic(err)
+	}
 	return taskList
 }
 
@@ -56,4 +59,7 @@ func WriteTasks(path string, taskList *model.TaskList) {
 		fmt.Printf("err %v", err)
 	}
 	err = ioutil.WriteFile(path, tList, 0644)
+	if err != nil {
+		fmt.Printf("err %v", err)
+	}
 }
