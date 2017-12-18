@@ -19,4 +19,4 @@
 - [ ] Should probably not start counting at 0
 - [ ] Add method to process tasks that haven't been updated in x number of days
 - [ ] Move sync stuff to it's own branch for continuing development
-- [ ] 
+- [ ] Start logging issues in repo.
