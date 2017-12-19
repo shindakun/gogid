@@ -33,6 +33,13 @@ func DataDirCheck() string {
 	if err != nil {
 		panic(err)
 	}
+
+	// Write opening and closing of JSON so next phase doesn't result in crash.
+	empty := []byte("{}")
+	err = ioutil.WriteFile(tasksFile, empty, 0644)
+	if err != nil {
+		fmt.Printf("err %v", err)
+	}
 	return tasksFile
 }
 
