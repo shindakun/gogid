@@ -29,17 +29,24 @@ func DataDirCheck() string {
 	}
 
 	tasksFile := filepath.Join(path, "tasks.json")
+
+	// Check to see if tasks.json already exists on disk, create an empty one if
+	// needed.
+	if _, err := os.Stat(tasksFile); err != nil {
+
+		// Write opening and closing JSON so next load doesn't result in crash.
+		empty := []byte("{}")
+		err = ioutil.WriteFile(tasksFile, empty, 0644)
+		if err != nil {
+			fmt.Printf("err %v", err)
+		}
+	}
+
 	_, err = os.OpenFile(tasksFile, os.O_RDONLY|os.O_CREATE, 0644)
 	if err != nil {
 		panic(err)
 	}
 
-	// Write opening and closing of JSON so next phase doesn't result in crash.
-	empty := []byte("{}")
-	err = ioutil.WriteFile(tasksFile, empty, 0644)
-	if err != nil {
-		fmt.Printf("err %v", err)
-	}
 	return tasksFile
 }
 

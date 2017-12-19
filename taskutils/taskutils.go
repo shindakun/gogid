@@ -59,7 +59,7 @@ func AddNewTask(taskList *model.TaskList, task string) {
 
 // AddNewNote adds a new note to a task.
 func AddNewNote(taskList *model.TaskList, task int64, note string) {
-	if int64(len(taskList.Task)) > task && int64(len(taskList.Task)) >= 0 {
+	if task >= 0 && task <= GetNumberOfTasks(taskList) {
 		taskList.Task[task].Notes = append(taskList.Task[task].Notes, note)
 		taskList.Task[task].Updated = int64(time.Now().Unix())
 	}
@@ -67,7 +67,7 @@ func AddNewNote(taskList *model.TaskList, task int64, note string) {
 
 // AddNextAction adds next action to task, no history, only one next action.
 func AddNextAction(taskList *model.TaskList, task int64, nextAction string) {
-	if int64(len(taskList.Task)) > task && int64(len(taskList.Task)) >= 0 {
+	if task >= 0 && task <= GetNumberOfTasks(taskList) {
 		taskList.Task[task].NextAction = nextAction
 		taskList.Task[task].Updated = int64(time.Now().Unix())
 	}
@@ -78,7 +78,7 @@ func AddNextAction(taskList *model.TaskList, task int64, nextAction string) {
 
 // CompleteTask marks a task as completed and updates update timestamp.
 func CompleteTask(taskList *model.TaskList, task int64) {
-	if int64(len(taskList.Task)) > task && int64(len(taskList.Task)) >= 0 {
+	if task >= 0 && task <= GetNumberOfTasks(taskList) {
 		taskList.Task[task].Complete = true
 		taskList.Task[task].Updated = int64(time.Now().Unix())
 	}
@@ -86,10 +86,10 @@ func CompleteTask(taskList *model.TaskList, task int64) {
 
 // InvertCompleteTask flips bool to oposite and updates update timestamp.
 func InvertCompleteTask(taskList *model.TaskList, task int64) {
-	if taskList.Task[task].Complete == true {
-		// task already completed.
-	}
-	if task <= GetNumberOfTasks(taskList) && task >= 0 {
+	if task >= 0 && task <= GetNumberOfTasks(taskList) {
+		if taskList.Task[task].Complete == true {
+			// task already completed.
+		}
 		taskList.Task[task].Complete = !taskList.Task[task].Complete
 		taskList.Task[task].Updated = int64(time.Now().Unix())
 	}
