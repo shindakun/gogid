@@ -2,12 +2,12 @@ package taskutils
 
 import (
 	"fmt"
-	"gogid/model"
 	"os"
 	"text/template"
 	"time"
 
 	"github.com/fatih/color"
+	"github.com/shindakun/gogid/model"
 )
 
 // Setup for coloring within the output template

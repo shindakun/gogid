@@ -4,8 +4,7 @@ import (
 	"time"
 
 	"github.com/nu7hatch/gouuid"
-
-	"gogid/model"
+	"github.com/shindakun/gogid/model"
 )
 
 // AddNewTask adds a new uncompleted task to the task list.

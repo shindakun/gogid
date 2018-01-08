@@ -2,11 +2,11 @@ package main
 
 import (
 	"flag"
-	"gogid/fileutils"
-	"gogid/taskutils"
 	"os"
 
 	"github.com/fatih/color"
+	"github.com/shindakun/gogid/fileutils"
+	"github.com/shindakun/gogid/taskutils"
 )
 
 // main command line interface for gogid.

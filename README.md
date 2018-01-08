@@ -6,9 +6,18 @@ gogid was created as a learning project.
 
 ---
 
+# Installation
+
+Pre-built binaries are not currently provided. Use of `go get` is recommended.
+
+```bash
+go get github.com/shindakun/gogid/cmd/gogid
+```
+
+---
+
 # Usage
 
-Clone repo.
 Run with `go run ./cmd/gogid/gogid.go` or build with
   `go build ./cmd/gogid/gogid.go`
 

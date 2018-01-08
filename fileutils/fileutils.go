@@ -7,7 +7,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"gogid/model"
+	"github.com/shindakun/gogid/model"
 )
 
 // DataDirCheck checks to see if .gogid exsits in the users home directory.
